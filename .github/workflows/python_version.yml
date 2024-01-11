@@ -1,0 +1,26 @@
+name: check_python_version
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check_python:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: check repo
+      uses: actions/checkout@v2
+
+    - name: set version
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.11
+
+    - name: update pip
+      run: |
+        python -m pip install --upgrade pip
+
+    - name: show python version
+      run: python --version
